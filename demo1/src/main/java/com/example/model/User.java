@@ -6,13 +6,13 @@ import jakarta.persistence.*;
 public class User {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-       @Column(name = "user_id")
+//       @Column(name = "user_id")
         private Long userId;
-        @Column(name = "user_name")
-        private String Name;
-       @Column(name="user_age")
+//        @Column(name = "user_name")
+        private String userName;
+ //      @Column(name="user_age")
         private String userAge;
-        @Column(name ="about")
+  //      @Column(name ="about")
         private String about;
 
     public Long getUserId() {
@@ -23,12 +23,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getName() {
-        return Name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getUserAge() {
@@ -46,4 +46,5 @@ public class User {
     public void setAbout(String about) {
         this.about = about;
     }
+}
 }
