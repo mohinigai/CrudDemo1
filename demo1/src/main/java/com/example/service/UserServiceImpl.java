@@ -5,6 +5,7 @@ import com.example.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UserServiceImpl implements UserServiceI {
     @Autowired
@@ -20,9 +21,9 @@ public class UserServiceImpl implements UserServiceI {
     public User updateUser(User user, Long userId) {
 
         User user1 = userRepository.findById(userId).get();
-       user1.setUserName(user.getUserName());
-       user1.setUserAge(user.getUserAge());
-       user1.setAbout(user.getAbout());
+        user1.setUserName(user.getUserName());
+        user1.setUserAge(user.getUserAge());
+        user1.setAbout(user.getAbout());
 
         User updatedUser = userRepository.save(user1);
         return updatedUser;
@@ -30,16 +31,35 @@ public class UserServiceImpl implements UserServiceI {
 
     @Override
     public User getsingleUser(Long userId) {
-        return null;
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Resource not found on server!!" + userId));
+        return user;
+            /* Optional<User> user = userRepository.findById(userId);
+        if(user.isPresent()){
+            return user.get();
+        }else {
+            throw new Exception("Resource not found on server!! "+user);
+        }
+    }*/
     }
 
     @Override
-    public List<User> getallUsers() {
-        return List.of();
+    public List<User> getAllUsers() {
+        List<User> allusers = userRepository.findAll();
+        return allusers;
     }
 
     @Override
-    public void deleteUser(Long UserId) {
+    public void deleteUser(Long userId) {
 
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("Resource not found on server!!" + userId));
+
+        userRepository.delete(user);
     }
+
 }
+
+
+

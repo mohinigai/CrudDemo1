@@ -9,11 +9,12 @@ public interface UserServiceI {
 
     User updateUser(User user,Long userId);
 
-    User getsingleUser(Long userId);
+    User getsingleUser(Long userId) throws Exception;
 
-    List<User> getallUsers();
+//    List<User> getAllUsers();
+    List<User> getAllUsers();
 
-    void deleteUser(Long UserId);
+    void deleteUser(Long userId);
 
 
 }
