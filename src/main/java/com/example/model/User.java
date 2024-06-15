@@ -1,6 +1,7 @@
 package com.example.model;
 
 import jakarta.persistence.*;
+
 @Entity
 @Table(name = "user_details")
 public class User {
